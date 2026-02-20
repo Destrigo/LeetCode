@@ -1,0 +1,11 @@
+class Solution:
+    def minCut(self, s: str) -> int:
+        def helper(i,j):
+            if s[i:j]==s[i:j][::-1]:
+                return 0
+            ans=math.inf
+            for k in range(i+1,j):
+                if s[i:k]==s[i:k][::-1]:
+                    ans=min(ans,helper(i,k)+1+helper(k,j))
+            return ans
+        return helper(0,len(s))
